@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mines</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <style>
+        .mines {
+            margin-top: 40px;
+            border: solid 1px #000;
+            padding: 20px;
+            background-color: #2E2E2E;
+            border-radius: 10px;
+            box-shadow: 1px 1px 5px #000;
+        }
+
+        .titulo {
+            font-size: 45px;
+            color: white;
+            text-align: center;
+            margin: 10px;
+            font-style: bold;
+        }
+
+        .btn {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            font-family: Wingdings;
+            font-size: 22px;
+            font-style: bold;
+            box-shadow: 1px 1px 1px #000;
+        }
+
+        .resultado {
+            text-align: center;
+            margin-left: 0px;
+            font-size: 20px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: solid 1px #000;
+            box-shadow: 1px 1px 1px #000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+
+                <div class="mines">
+
+                    <h1 class="titulo" onClick="document.location.reload(true)">MINES</h1>
+
+                    <div class="row">
+                        <input onclick="mostraCelula(0)" type="button" id="c0"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(1)" type="button" id="c1"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(2)" type="button" id="c2"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(3)" type="button" id="c3"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(4)" type="button" id="c4"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                    </div>
+
+                    <div class="row">
+                        <input onclick="mostraCelula(5)" type="button" id="c5"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(6)" type="button" id="c6"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(7)" type="button" id="c7"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(8)" type="button" id="c8"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(9)" type="button" id="c9"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                    </div>
+
+                    <div class="row">
+                        <input onclick="mostraCelula(10)" type="button" id="c10"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(11)" type="button" id="c11"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(12)" type="button" id="c12"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(13)" type="button" id="c13"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(14)" type="button" id="c14"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                    </div>
+
+                    <div class="row">
+                        <input onclick="mostraCelula(15)" type="button" id="c15"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(16)" type="button" id="c16"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(17)" type="button" id="c17"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(18)" type="button" id="c18"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(19)" type="button" id="c19"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                    </div>
+
+                    <div class="row">
+                        <input onclick="mostraCelula(20)" type="button" id="c20"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(21)" type="button" id="c21"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(22)" type="button" id="c22"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(23)" type="button" id="c23"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                        <input onclick="mostraCelula(24)" type="button" id="c24"
+                            class="btn btn-dark btn-lg clear font-weight-light">
+                    </div>
+
+                    <input onclick="iniciaMines()" id="resultado" type="text" class="form-control resultado"
+                        placeholder=" " disabled="disabled" />
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        var mines = Array()
+        var game_over = false
+        var aux = 0
+
+        iniciaMines()
+
+        function iniciaMines() {
+            for (var i = 0; i < 25; i++) {
+                document.getElementById("c" + i).value = ' '
+                if (i % 4 === 0) {
+                    mines[i] = 'X'
+                } else {
+                    mines[i] = 'O'
+                }
+            }
+            mines = shuffleArray(mines)
+        }
+
+        function mostraMines() {
+            for (var i = 0; i < 25; i++) {
+                if (mines[i] === 'X') {
+                    document.getElementById("c" + i).value = 'M'
+                    document.getElementById('c' + i).style.backgroundColor = '#ff0000'
+                } else {
+                    document.getElementById("c" + i).value = 'v'
+                }
+            }
+        }
+
+        function mostraCelula(x) {
+            if (!game_over) {
+                document.getElementById('c' + x).disabled = true
+                aux++
+                if (mines[x] === 'X') {
+                    document.getElementById("c" + x).value = 'M'
+                    document.getElementById('c' + x).style.backgroundColor = '#ff0000'
+                    mostraMines()
+                    gameOver(0)
+                } else {
+                    document.getElementById("c" + x).value = 'v'
+                    if (aux > 13 && game_over === false) {
+                        gameOver(1)
+                    }
+                }
+            }
+        }
+
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function gameOver(x) {
+            game_over = true
+            desabilitaMines()
+            switch (x) {
+                case 0:
+                    document.getElementById("resultado").value = 'PERDEU'
+                    break
+                case 1:
+                    document.getElementById("resultado").value = 'VITÓRIA'
+                    vencerMines()
+                    break
+            }
+        }
+
+        function vencerMines() {
+            for (var i = 0; i < 25; i++) {
+                if (mines[i] === 'X') {
+                    document.getElementById('c' + i).style.backgroundColor = '#009933'
+                    document.getElementById('c' + i).value = 'O'
+                }
+            }
+        }
+
+        function desabilitaMines() {
+            for (var i = 0; i < 25; i++) {
+                document.getElementById('c' + i).disabled = true
+                document.getElementById('c' + i).disabled = false
+            }
+        }
+
+    </script>
+</body>
+
+</html>
