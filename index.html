@@ -10,7 +10,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
         integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    
+
 
 </head>
 
@@ -22,7 +22,7 @@
 
                 <div class="mines">
 
-                    <h1 class="titulo" onClick="document.location.reload(true)">MINES</h1>
+                    <h1 class="titulo">MINES</h1>
 
                     <div class="row">
                         <input onclick="mostraCelula(0)" type="button" id="c0"
@@ -92,9 +92,14 @@
                     <input onclick="iniciaMines()" id="resultado" type="text" class="form-control resultado"
                         placeholder=" " disabled="disabled" />
 
-                </div>
+                    <div class="row d-flex justify-content-center">
+                        <button id="restart" onClick="document.location.reload(true)"
+                            class="restart btn-secondary btn-lg font-weight-bold text-dark">REINICIAR</button>
+                    </div>
 
+                </div>
             </div>
+
         </div>
     </div>
 

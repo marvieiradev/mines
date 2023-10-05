@@ -1,13 +1,15 @@
 var mines = Array()
 var game_over = false
 var aux = 0
+let qtd_mines = 7
+let diff = 7
 
 iniciaMines()
 
 function iniciaMines() {
     for (var i = 0; i < 25; i++) {
         document.getElementById("c" + i).value = ' '
-        if (i % 4 === 0) {
+        if (i < qtd_mines) {
             mines[i] = 'X'
         } else {
             mines[i] = 'O'
@@ -38,7 +40,7 @@ function mostraCelula(x) {
             gameOver(0)
         } else {
             document.getElementById("c" + x).value = 'v'
-            if (aux > 13 && game_over === false) {
+            if ((aux >= (25 - qtd_mines)|| aux >= diff) && game_over === false) {
                 gameOver(1)
             }
         }
@@ -56,6 +58,7 @@ function shuffleArray(arr) {
 function gameOver(x) {
     game_over = true
     desabilitaMines()
+    document.getElementById("restart").style.opacity = 1
     switch (x) {
         case 0:
             document.getElementById("resultado").value = 'PERDEU'
@@ -82,3 +85,5 @@ function desabilitaMines() {
         document.getElementById('c' + i).disabled = false
     }
 }
+
+console.log(mines)
