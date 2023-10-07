@@ -1,12 +1,72 @@
-var mines = Array()
-var game_over = false
-var aux = 0
+let mines = Array()
+let game_over = false
+let aux = 0
 let qtd_mines = 7
-let diff = 7
+let diff = 4
+
+
 
 iniciaMines()
 
+function selecDificuldade() {
+    let dificuldade = document.getElementById("dificuldade").value
+    let dif
+    switch (dificuldade) {
+        case '1':
+            dif = "Fácil"
+            break
+        case '2':
+            dif = "Médio"
+            break
+
+        case '3':
+            dif = "Difícil"
+            break
+
+        case '4':
+            dif = "Muito Difícil"
+            break
+
+        case '5':
+            dif = "Impossível"
+            break
+        default:
+            dif = "Fácil"
+    }
+    localStorage.setItem("dificuldade", dif);
+    document.getElementById('dif').innerText = dif
+    document.location.reload(true)
+}
+
 function iniciaMines() {
+    const dif = localStorage.getItem('dificuldade');
+    dif == null ? dif = "Facil" :
+        document.getElementById('dif').innerText = dif
+    switch (dif) {
+        case 'Fácil':
+            qtd_mines = 7
+            diff = 4
+            break
+        case 'Médio':
+            qtd_mines = 7
+            diff = 7
+            break
+
+        case 'Difícil':
+            qtd_mines = 10
+            diff = 10
+            break
+
+        case 'Muito Difícil':
+            qtd_mines = 15
+            diff = 10
+            break
+
+        case 'Impossível':
+            qtd_mines = 24
+            diff = 1
+            break
+    }
     for (var i = 0; i < 25; i++) {
         document.getElementById("c" + i).value = ' '
         if (i < qtd_mines) {
@@ -40,7 +100,7 @@ function mostraCelula(x) {
             gameOver(0)
         } else {
             document.getElementById("c" + x).value = 'v'
-            if ((aux >= (25 - qtd_mines)|| aux >= diff) && game_over === false) {
+            if ((aux >= (25 - qtd_mines) || aux >= diff) && game_over === false) {
                 gameOver(1)
             }
         }
@@ -86,4 +146,8 @@ function desabilitaMines() {
     }
 }
 
-console.log(mines)
+function habilitaMines() {
+    for (var i = 0; i < 25; i++) {
+        document.getElementById('c' + i).disabled = true
+    }
+}
