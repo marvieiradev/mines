@@ -34,6 +34,9 @@ select {
     box-shadow: 1px 1px 1px #000;
     border-radius: 5px;
 }
+.btn-ok{
+    margin: 0 2px;
+}
 
 .btn {
     width: 50px;
