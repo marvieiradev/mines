@@ -3,14 +3,12 @@ let game_over = false
 let aux = 0
 let qtd_mines = 7
 let diff = 4
-
-
+let dif = "Fácil"
 
 iniciaMines()
 
 function selecDificuldade() {
     let dificuldade = document.getElementById("dificuldade").value
-    let dif
     switch (dificuldade) {
         case '1':
             dif = "Fácil"
@@ -33,15 +31,12 @@ function selecDificuldade() {
         default:
             dif = "Fácil"
     }
-    localStorage.setItem("dificuldade", dif);
     document.getElementById('dif').innerText = dif
-    document.location.reload(true)
+    iniciaMines()
 }
 
 function iniciaMines() {
-    const dif = localStorage.getItem('dificuldade');
-    dif == null ? dif = "Facil" :
-        document.getElementById('dif').innerText = dif
+    document.getElementById('dif').innerText = dif
     switch (dif) {
         case 'Fácil':
             qtd_mines = 7
@@ -67,8 +62,13 @@ function iniciaMines() {
             diff = 1
             break
     }
+    game_over = false
+    aux = 0
     for (var i = 0; i < 25; i++) {
         document.getElementById("c" + i).value = ' '
+        document.getElementById('c' + i).disabled = false
+        document.getElementById('c' + i).style.backgroundColor = '#343a40'
+        document.getElementById("resultado").value = ''
         if (i < qtd_mines) {
             mines[i] = 'X'
         } else {
@@ -122,9 +122,11 @@ function gameOver(x) {
     switch (x) {
         case 0:
             document.getElementById("resultado").value = 'PERDEU'
+            document.getElementById("resultado").style.color = '#ff0000'
             break
         case 1:
             document.getElementById("resultado").value = 'VITÓRIA'
+            document.getElementById("resultado").style.color = '#009933'
             vencerMines()
             break
     }

@@ -26,8 +26,11 @@
 
                     <div class="options row d-flex justify-content-center">
                         <span id="dif" class="text-light"></span>
+                    </div>
+
+                    <div class="options row d-flex justify-content-center">
+                        <span class="text-light">Dificuldade:</span>
                         <select name="" id="dificuldade" class="primary text-dark">
-                            <option value="0">Dificuldade</option>
                             <option value="1">Fácil</option>
                             <option value="2">Médio</option>
                             <option value="3">Difícil</option>
@@ -107,7 +110,7 @@
                         class="font-weight-bold form-control resultado" placeholder="" disabled="disabled" />
 
                     <div class="row d-flex justify-content-center">
-                        <button id="restart" onClick="document.location.reload(true)"
+                        <button id="restart" onClick="iniciaMines()"
                             class="restart btn-secondary btn-lg font-weight-bold text-dark">REINICIAR</button>
                     </div>
 
