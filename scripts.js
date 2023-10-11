@@ -65,7 +65,7 @@ function iniciaMines() {
     game_over = false
     aux = 0
     for (var i = 0; i < 25; i++) {
-        document.getElementById("c" + i).value = ' '
+        document.getElementById("c" + i).classList.remove("diamound","bomb","explosion","finish")
         document.getElementById('c' + i).disabled = false
         document.getElementById('c' + i).style.backgroundColor = '#343a40'
         document.getElementById("resultado").value = ''
@@ -81,10 +81,10 @@ function iniciaMines() {
 function mostraMines() {
     for (var i = 0; i < 25; i++) {
         if (mines[i] === 'X') {
-            document.getElementById("c" + i).value = 'M'
+            document.getElementById("c" + i).classList.add("bomb")
             document.getElementById('c' + i).style.backgroundColor = '#ff0000'
         } else {
-            document.getElementById("c" + i).value = 'v'
+            document.getElementById("c" + i).classList.add("diamound")
         }
     }
 }
@@ -94,12 +94,12 @@ function mostraCelula(x) {
         document.getElementById('c' + x).disabled = true
         aux++
         if (mines[x] === 'X') {
-            document.getElementById("c" + x).value = 'M'
+            document.getElementById("c" + x).classList.add("explosion")
             document.getElementById('c' + x).style.backgroundColor = '#ff0000'
             mostraMines()
             gameOver(0)
         } else {
-            document.getElementById("c" + x).value = 'v'
+            document.getElementById("c" + x).classList.add("diamound")
             if ((aux >= (25 - qtd_mines) || aux >= diff) && game_over === false) {
                 gameOver(1)
             }
@@ -136,7 +136,7 @@ function vencerMines() {
     for (var i = 0; i < 25; i++) {
         if (mines[i] === 'X') {
             document.getElementById('c' + i).style.backgroundColor = '#009933'
-            document.getElementById('c' + i).value = 'O'
+            document.getElementById('c' + i).classList.add("finish")
         }
     }
 }

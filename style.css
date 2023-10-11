@@ -48,6 +48,28 @@ select {
     box-shadow: 1px 1px 1px #000;
 }
 
+.diamound, .bomb, .explosion, .finish{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.diamound{
+    background-image: url(images/diamond.png);
+}
+
+.bomb{
+    background-image: url(images/bomb.png);
+}
+
+.explosion{
+    background-image: url(images/explosion.png);
+}
+
+.finish{
+    background-image: url(images/finish.png);
+}
+
 .resultado {
     text-align: center;
     margin-left: 0px;
