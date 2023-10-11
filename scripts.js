@@ -82,10 +82,11 @@ function mostraMines() {
     for (var i = 0; i < 25; i++) {
         if (mines[i] === 'X') {
             document.getElementById("c" + i).classList.add("bomb")
-            document.getElementById('c' + i).style.backgroundColor = '#ff0000'
+            //document.getElementById('c' + i).style.backgroundColor = '#ff0000'
         } else {
             document.getElementById("c" + i).classList.add("diamound")
         }
+        document.getElementById('c' + i).style.backgroundColor = '#ff0000'
     }
 }
 
@@ -95,7 +96,7 @@ function mostraCelula(x) {
         aux++
         if (mines[x] === 'X') {
             document.getElementById("c" + x).classList.add("explosion")
-            document.getElementById('c' + x).style.backgroundColor = '#ff0000'
+           // document.getElementById('c' + x).style.backgroundColor = '#ff0000'
             mostraMines()
             gameOver(0)
         } else {
@@ -135,7 +136,7 @@ function gameOver(x) {
 function vencerMines() {
     for (var i = 0; i < 25; i++) {
         if (mines[i] === 'X') {
-            document.getElementById('c' + i).style.backgroundColor = '#009933'
+            document.getElementById("c" + i).style.backgroundColor = '#1f1f1f'
             document.getElementById('c' + i).classList.add("finish")
         }
     }

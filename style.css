@@ -46,6 +46,9 @@ select {
     font-size: 22px;
     font-style: bold;
     box-shadow: 1px 1px 1px #000;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .diamound, .bomb, .explosion, .finish{
@@ -55,6 +58,7 @@ select {
 }
 
 .diamound{
+    
     background-image: url(images/diamond.png);
 }
 
